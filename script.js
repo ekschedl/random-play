@@ -1,6 +1,7 @@
 "use strict";
 function guessNumber() {
   const systemNumber = Math.floor(Math.random() * 100) + 1;
+  let attempts = 10;
 
   function checkNumber(answerNumber) {
     if (answerNumber === null) {
@@ -13,10 +14,20 @@ function guessNumber() {
       alert("Введи число!");
       checkNumber(prompt("Попробуйте еще раз:"));
     } else if (parsedAnswerNumber < systemNumber) {
-      alert("Загаданное число больше.");
+      attempts--;
+      if (attempts === 0) {
+        alert("Попытки закончились, хотите сыграть еще?");
+        return;
+      }
+      alert(`Загаданное число больше. Осталось попыток: ${attempts}`);
       checkNumber(prompt("Попробуйте еще раз:"));
     } else if (parsedAnswerNumber > systemNumber) {
-      alert("Загаданное число меньше.");
+      attempts--;
+      if (attempts === 0) {
+        alert("Попытки закончились, хотите сыграть еще?");
+        return;
+      }
+      alert(`Загаданное число меньше. Осталось попыток: ${attempts}`);
       checkNumber(prompt("Попробуйте еще раз:"));
     } else {
       alert("Поздравляю, Вы угадали!!!");
